@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7760215657781412437}
   - component: {fileID: 106308680742663942}
   - component: {fileID: 8464568162007561717}
-  - component: {fileID: 2721976502433163340}
   - component: {fileID: -5214215918177891987}
   m_Layer: 0
   m_Name: T
@@ -105,33 +104,6 @@ MonoBehaviour:
   - {fileID: 9160222157121197263}
   - {fileID: 7655255687073482365}
   - {fileID: 5805394815200447986}
---- !u!50 &2721976502433163340
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 306095983928577043}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &-5214215918177891987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +126,7 @@ GameObject:
   m_Component:
   - component: {fileID: 918212541148713955}
   - component: {fileID: 2320610339474347295}
+  - component: {fileID: 8243172840753303742}
   m_Layer: 0
   m_Name: GreenBlock_0
   m_TagString: Untagged
@@ -231,6 +204,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8243172840753303742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2760190767922616000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5805394815200447986
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5748938978756888209}
   - component: {fileID: 1678240927009052029}
+  - component: {fileID: 4758344276055266072}
   m_Layer: 6
   m_Name: GreenBlock_3
   m_TagString: Untagged
@@ -318,6 +304,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4758344276055266072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805394815200447986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7655255687073482365
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,6 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7301902685046070853}
   - component: {fileID: 244917190464298716}
+  - component: {fileID: 2975970528248535706}
   m_Layer: 0
   m_Name: GreenBlock_2
   m_TagString: Untagged
@@ -405,6 +404,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2975970528248535706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7655255687073482365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9160222157121197263
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6439728920014039564}
   - component: {fileID: 7281916983398205928}
+  - component: {fileID: 6877397606832942133}
   m_Layer: 0
   m_Name: GreenBlock_1
   m_TagString: Untagged
@@ -492,3 +504,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6877397606832942133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9160222157121197263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

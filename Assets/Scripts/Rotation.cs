@@ -6,17 +6,19 @@ using UnityEngine;
 public class Rotation : MonoBehaviour
 {
     private bool isVertical;
+    private MoveTetromino mv;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isVertical = false;
+        mv = GetComponent<MoveTetromino>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (moveTetromino.isFalling == true)
+        if (mv.GetIsFalling())
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -65,40 +67,26 @@ public class Rotation : MonoBehaviour
             Vector3 predictedLocation = parentQuaternian * localPosition + transform.position;
 
             //print("old " + child.position);
-           // print("new " + predictedLocation);
+            print("new " + predictedLocation);
 
             if (predictedLocation.x < -5 || predictedLocation.x > 5 ||
-                predictedLocation.y < -10 || predictedLocation.y > 10 || 
-                Game.grid[(int) math.ceil(predictedLocation.x)+4, (int) math.ceil(predictedLocation.y)+9] == 1)   
+                predictedLocation.y < -10 || predictedLocation.y > 10 ||
+                Game.grid[(int)math.ceil(predictedLocation.x) + 4, (int)math.ceil(predictedLocation.y) + 9] == 1)
             {
                 isValid = false;
-                break;   
+                break;
             }
         }
 
-       // print("out " + isValid);
+        print("out " + isValid);
         if (isValid)
         {
             transform.eulerAngles = simulatedRotation;
         }
-
-       // parentTransform.position = simulatedRotation;
-
-        // foreach (Transform
-        // .child in parentTransform)
-        //{
-        //print("new " + child.position);
-        //  }
     }
-    //Returns true if the rotation you enter will be out of bounds.
-    /*private bool IsWithinBoundsRotation() {
-        bool isOutOfBounds = false;
-        Collider2D col = gameObject.GetComponent<BoxCollider2D>();
-        Vector3 nextRotation = new Vector3(transform.position.x, transform.position.y, transform.eulerAngles.z - 90);
-        float bounds = col.bounds.center.x + col.bounds.size.y/2;
-        print("center" + col.bounds.center.x);
-        print("bounds" + col.bounds.size.y/2);
 
-        return bounds <= 5;
-    }*/
+    private void GetFullBottom()
+    {
+        
+    }
 }

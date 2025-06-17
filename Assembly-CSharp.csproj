@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Assets/Scripts/Collision.cs" />
     <Compile Include="Assets/Scripts/Game.cs" />
+    <Compile Include="Assets/Scripts/TetrominoBlock.cs" />
     <Compile Include="Assets/Scripts/Spawner.cs" />
     <Compile Include="Assets/Scripts/MoveTetromino.cs" />
     <Compile Include="Assets/Scripts/Rotation.cs" />

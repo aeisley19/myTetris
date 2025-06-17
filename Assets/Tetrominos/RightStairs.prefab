@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3710488981379176641}
   - component: {fileID: 4273695498435532494}
+  - component: {fileID: 7077065820643588571}
   m_Layer: 0
   m_Name: DarkBlue_0
   m_TagString: Untagged
@@ -87,6 +88,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7077065820643588571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449094464095910877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2440833968579267459
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +111,6 @@ GameObject:
   - component: {fileID: 1982311125848785989}
   - component: {fileID: 516525787439059394}
   - component: {fileID: 145316045712084869}
-  - component: {fileID: 3146407284311666743}
   - component: {fileID: -7511798341966347673}
   m_Layer: 0
   m_Name: RightStairs
@@ -192,33 +204,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!50 &3146407284311666743
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2440833968579267459}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &-7511798341966347673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 300856486441514356}
   - component: {fileID: 2724383263239203834}
+  - component: {fileID: 6308467824604926744}
   m_Layer: 0
   m_Name: DarkBlue_3
   m_TagString: Untagged
@@ -318,6 +304,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6308467824604926744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6873367924241385822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8043512310459386801
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,6 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4170139512926926809}
   - component: {fileID: 452470598573365414}
+  - component: {fileID: 4398897373292652761}
   m_Layer: 0
   m_Name: DarkBlue_1
   m_TagString: Untagged
@@ -405,6 +404,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4398897373292652761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8043512310459386801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8080777262360062841
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 360367659113575252}
   - component: {fileID: 6048686037392673603}
+  - component: {fileID: 2174588181758072913}
   m_Layer: 0
   m_Name: DarkBlue_2
   m_TagString: Untagged
@@ -492,3 +504,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2174588181758072913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8080777262360062841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     //Spawn position.
     private Vector2 startPos;
     private GameObject tetrominoSpawn;
+    private MoveTetromino mv;
 
     public void Start()
     {
@@ -16,14 +17,15 @@ public class Spawner : MonoBehaviour
     }
 
     public void Update() {
-        if(!moveTetromino.isFalling) {
+        if(!mv.GetIsFalling()) {
             Spawn();
         }
     }
 
     public void Spawn() {
         int rand = Random.Range(0, 6);
-        GameObject tetrominoSpawn = Instantiate(tetrominos[1]);
+        tetrominoSpawn = Instantiate(tetrominos[1]);
+        mv = tetrominoSpawn.GetComponent<MoveTetromino>();
         Collider2D col = tetrominoSpawn.GetComponent<Collider2D>();
 
         if(tetrominoSpawn.tag == "Long") {

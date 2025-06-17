@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6495576988316294321}
   - component: {fileID: 5917569662818235233}
+  - component: {fileID: 8361896557315149384}
   m_Layer: 0
   m_Name: Yellow_0
   m_TagString: Untagged
@@ -87,6 +88,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8361896557315149384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439207791835428852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &601172498489548892
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,6 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7813802381462988425}
   - component: {fileID: 7641377593754209202}
+  - component: {fileID: 4048074409132678965}
   m_Layer: 0
   m_Name: Yellow_1
   m_TagString: Untagged
@@ -174,6 +188,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4048074409132678965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601172498489548892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3036423463725655248
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1436623206802265259}
   - component: {fileID: 6612852107565879224}
+  - component: {fileID: 8908672652781667493}
   m_Layer: 0
   m_Name: Yellow_3
   m_TagString: Untagged
@@ -261,6 +288,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8908672652781667493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3036423463725655248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3634854247670891889
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +311,6 @@ GameObject:
   - component: {fileID: 7659081942893283637}
   - component: {fileID: 3587403576743057934}
   - component: {fileID: 8033066441024751974}
-  - component: {fileID: 283981853301387687}
   - component: {fileID: -4495017167586567359}
   m_Layer: 0
   m_Name: LeftStairs
@@ -366,33 +404,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!50 &283981853301387687
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3634854247670891889}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &-4495017167586567359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,6 +426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1666646903672128266}
   - component: {fileID: 7201536790420356625}
+  - component: {fileID: 1401520785925376274}
   m_Layer: 0
   m_Name: Yellow_2
   m_TagString: Untagged
@@ -492,3 +504,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1401520785925376274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7195185948624083491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

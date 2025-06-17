@@ -1,8 +1,9 @@
 using System.Collections;
+using Unity.Burst.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class moveTetromino : MonoBehaviour
+public class MoveTetromino : MonoBehaviour
 {
     //The starting position of the player piece.
     public Vector2 startPos;
@@ -12,160 +13,172 @@ public class moveTetromino : MonoBehaviour
     public Collider2D col;
     //An array of squares;
     public GameObject[] children;
-
     //Center of the sprite on the x and y axis.
-    private float spriteCenterX;
-    private float spriteCenterY;
-    //time delay before tetrimino locks into place upon landing on floor or another tetromino.
     private float delay = 0.5f;
     //Enumerator that locks tetromino in place after a period of time.
     private IEnumerator lockDelayRoutine;
-    //Is the coroutine currently running.
-    private bool CRActive;
     //Current position of each block in tetromino.
     public static int[] currentPositionsX = new int[4];
     public static int[] currentPositionsY = new int[4];
     public static bool isFalling;
+    //Right and left edges of the screen.
+    private const float RIGHTEDGE = 5f;
+    private const float LEFTEDGE = -5f;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created.
-    void Start() {
+    void Start()
+    {
         col = GetComponent<Collider2D>();
-        spriteCenterX = col.bounds.size.x/2;
-        spriteCenterY = col.bounds.size.y/2;
         isFalling = true;
 
-        if(isFalling) {
+        if (isFalling)
+        {
             InvokeRepeating("Fall", 1f, 1f);
         }
     }
 
-   void Update()
-    {   
+    void Update()
+    {
         PlayerInput();
     }
 
     //Controls player left, right, down movement.
-    private void PlayerInput() {
-        //Right and left edges of the screen.
-        const float RIGHTEDGE = 5f;
-        float LEFTEDGE = -5f;
-        float playerRight = col.bounds.center.x + (col.bounds.size.x/2f);
-        float playerLeft = col.bounds.center.x - (col.bounds.size.x/2f);
-        //print(col.bounds.center.x - (col.bounds.size.x/2f));
-        
+    private void PlayerInput()
+    {
+        float playerRight = col.bounds.center.x + (col.bounds.size.x / 2f);
+        float playerLeft = col.bounds.center.x - (col.bounds.size.x / 2f);
+
         //Allows for tetromino movement if it is falling.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-        if(isFalling) {
-            if(Input.GetKeyDown(KeyCode.RightArrow) && playerRight < RIGHTEDGE) {
-                transform.position = new Vector2(transform.position.x + 1, transform.position.y);
-                //print(transform.TransformPoint(col.bounds.center));
-            } else if (Input.GetKeyDown(KeyCode.LeftArrow) && playerLeft > LEFTEDGE) {
-                transform.position = new Vector2(transform.position.x - 1, transform.position.y);
-                //print(playerLeft);
-            } else if(Input.GetKeyDown(KeyCode.DownArrow) && math.ceil(transform.position.y - spriteCenterY) != -10) {
-                transform.position = new Vector2(transform.position.x, transform.position.y - 1);
+        if (isFalling)
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow) && playerRight < RIGHTEDGE && !getSideCollision()) 
+            {
+                Move(Vector2.right);
+                
             }
-        } else {
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && playerLeft > LEFTEDGE && !getSideCollision())
+            {
+                Move(Vector2.left);
+                //print(playerLeft);
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                Move(Vector2.down);
+            }
+        }
+        else
+        {
             //Cancels falling invokation.
             CancelInvoke("Fall");
 
             //Sets the end point position of the tetromino in the grid.
-            Game.SetGridPoints(currentPositionsX, currentPositionsY);
+            //Game.SetGridPoints(currentPositionsX, currentPositionsY);
             gameObject.GetComponent<Rotation>().enabled = false;
+            //print("collided " + currentPositionsX[0] + ", " + currentPositionsY[0]);
+            // print(Game.isFilled(currentPositionsX[0], currentPositionsY[1]));
 
             //Ends Update method.
             enabled = false;
         }
     }
 
+    private void Move(Vector2 direction)
+    {
+        transform.position += (Vector3)direction;
+    }
+
     //Tetromino falls 1 unit every invocation unless player has reached the game floor.
-    private void Fall() {
-        //int[] currentPositionsX = new int[3];
-        //int[] currentPositionsY = new int[4];
-        int bottomPos = 20;
+    private void Fall()
+    {
+        bool collided = getBottomCollision();
 
-        //charts the tetromino's position while falling.
-        if (isFalling)
+        //World position of the bottom of collider.
+        float bottom = col.bounds.center.y - (col.bounds.size.y / 2f);
+
+        //print("collided " + collided);
+        //tetrimino stops falling once it hits the floor.
+        if (bottom > -10f && collided == false)
         {
-            for (int i = 0; i < children.Length; i++)
-            {
-                currentPositionsX[i] = (int)math.ceil(transform.GetChild(i).gameObject.transform.position.x) + 4;
-                currentPositionsY[i] = (int)math.ceil(transform.GetChild(i).gameObject.transform.position.y) + 9;
-
-                if (currentPositionsY[i] < bottomPos)
-                {
-                    bottomPos = currentPositionsY[i];
-                }
-                //print(bottomPos);
-                //Game.SetGridPoint(currentPositionX, currentPositionY);
-
-                //landPositionX = (int) math.ceil(transform.GetChild(i).gameObject.transform.position.x + 0.5f) + 4;
-                //landPositionY = (int) math.ceil(transform.GetChild(i).gameObject.transform.position.y + 0.5f) - 10;
-            }
+            transform.position = new Vector2(transform.position.x, transform.position.y - 1);
         }
         else
         {
-            //Sets the end point psquareosition of the tetromino in the grid.
-            Game.SetGridPoints(currentPositionsX, currentPositionsY);
-            gameObject.GetComponent<Rotation>().enabled = false;
-            //print("land position" + currentPositionsX + ", " + currentPositionsY);
-            //print(Game.GetGrid());
-        }
-
-        //World position of the bottom of collider.
-        float bottom = col.bounds.center.y - (col.bounds.size.y/2f);
-
-        //tetrimino stops falling once it hits the floor.
-        if(bottom > -10f) {
-            transform.position = new Vector2(transform.position.x, transform.position.y - 1);
-        } else {
             lockDelayRoutine = LockDelay(delay);
             StartCoroutine(lockDelayRoutine);
         }
     }
 
-    //On colliding with another tetromino.
-    /*private void OnCollisionEnter2D(Collision2D other) {
+    private bool getBottomCollision()
+    {
+        bool collided = false;
+        for (int i = 0; i < children.Length; i++)
+        {
+            Vector2 below = transform.GetChild(i).gameObject.GetComponent<TetrominoBlock>().GetPos(0, -1);
 
-        Vector2 contactPoint = other.GetContact(0).point;
-        Vector2 center = col.bounds.center;
-        
-
-        bool bottom = contactPoint.x > center.x;
-        print("points " + contactPoint);
-        print("center " + other.GetContact(0).point);
-
-        if(bottom) {
-            lockDelayRoutine = LockDelay(delay);
-            StartCoroutine(lockDelayRoutine);
-        }
-    }*/
-
-    //Allows tetromino to move for a number of seconds before locking in place.
-    private IEnumerator LockDelay(float delay) {
-        CRActive = true;
-        
-        yield return new WaitForSeconds(delay);
-        isFalling = false;
-    }
-
-    /*private void DelayCounter(int movesCount) {
-        if (CRActive) {
-            StopCoroutine(lockDelayRoutine);
-        }
-    }*/
-
-    //Collision of any tetromino block from the bottom.
-    /*private bool floorCol(int[] currentPosY) {
-        bool result = false;
-        int belowPos; //The y position below where the tetromino block is located (where the collision will occur).
-
-        for(int i=0; i < currentPosY.Length; i++) {
-            belowPos = currentPosY[i] - 1;
-            
-            if (Game.isFilled(currentPositionsX[i], belowPos) == 1) {
-                result = true;
+            if (below.y > 0)
+            {
+                if (Game.grid[(int)below.x, (int)below.y] == 1)
+                {
+                    collided = true;
+                    break;
+                }
             }
         }
 
-        return result;
-    }*/
+        return collided;
+    }
+
+    private bool getSideCollision()
+    {
+        bool col = false;
+        for (int i = 0; i < children.Length; i++)
+        {
+            Vector2 right = transform.GetChild(i).gameObject.GetComponent<TetrominoBlock>().GetPos(1, 0);
+            Vector2 left = transform.GetChild(i).gameObject.GetComponent<TetrominoBlock>().GetPos(-1, 0);
+
+            if (left.x > 0 && right.x < 10)
+            {
+                if (Game.grid[(int)left.x, (int)left.y] == 1 || Game.grid[(int)right.x, (int)right.y] == 1)
+                {
+                    col = true;
+                    break;
+                }
+            }
+        }
+
+        return col;
+    }
+
+    //Allows tetromino to move for a number of seconds before locking in place.
+    private IEnumerator LockDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        
+        isFalling = false;
+
+        setGridPositions();
+
+        print(Game.grid[0, 0]);
+    }
+
+    private void setGridPositions()
+    {
+        GameObject block;
+        TetrominoBlock tb;
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            block = transform.GetChild(i).gameObject;
+            print(block.name);
+            tb = transform.GetChild(i).gameObject.GetComponent<TetrominoBlock>();
+            tb.SetGridPoint();
+        }
+    }
+
+    public bool GetIsFalling()
+    {
+        return isFalling;
+    }
 }

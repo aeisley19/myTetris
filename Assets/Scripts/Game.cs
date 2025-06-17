@@ -29,7 +29,7 @@ public class Game : MonoBehaviour
 
     public static void SetGridPoints(int[] x, int[] y) {
         for(int i=0; i < 4; i++) {
-            grid[x[i], y[i]] = 1;
+            grid[x[i], y[i]] = 0;
         }
     }
 }

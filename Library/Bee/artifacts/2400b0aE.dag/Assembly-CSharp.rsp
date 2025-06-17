@@ -439,6 +439,7 @@
 "Assets/Scripts/MoveTetromino.cs"
 "Assets/Scripts/Rotation.cs"
 "Assets/Scripts/Spawner.cs"
+"Assets/Scripts/TetrominoBlock.cs"
 -langversion:9.0
 /deterministic
 /optimize+

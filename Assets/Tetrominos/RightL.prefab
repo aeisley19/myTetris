@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3543750997163998834}
   - component: {fileID: 8380697199360988505}
+  - component: {fileID: 7321147959073311746}
   m_Layer: 0
   m_Name: Pink_2
   m_TagString: Untagged
@@ -87,6 +88,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7321147959073311746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260412277935698306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &928797762024854333
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,6 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2476280852560073963}
   - component: {fileID: 6198582775250704759}
+  - component: {fileID: 5474399368679094509}
   m_Layer: 0
   m_Name: Pink_1
   m_TagString: Untagged
@@ -174,6 +188,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5474399368679094509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928797762024854333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1138106932548140804
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,7 +211,6 @@ GameObject:
   - component: {fileID: 5610921090324139185}
   - component: {fileID: 2804403837413293416}
   - component: {fileID: 2721642501624809058}
-  - component: {fileID: 942552065621433195}
   - component: {fileID: -7516265275414329576}
   m_Layer: 0
   m_Name: RightL
@@ -279,33 +304,6 @@ MonoBehaviour:
   - {fileID: 928797762024854333}
   - {fileID: 260412277935698306}
   - {fileID: 7818370167186066226}
---- !u!50 &942552065621433195
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138106932548140804}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &-7516265275414329576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,6 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6106521198495893266}
   - component: {fileID: 5315736310537354878}
+  - component: {fileID: 6540339644646168919}
   m_Layer: 0
   m_Name: Pink_0
   m_TagString: Untagged
@@ -405,6 +404,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6540339644646168919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251765394435419489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7818370167186066226
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +426,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6653325292337554900}
   - component: {fileID: 3456656101192496702}
+  - component: {fileID: 1448214144324501353}
   m_Layer: 6
   m_Name: Pink_3
   m_TagString: Untagged
@@ -492,3 +504,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1448214144324501353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818370167186066226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5546ce60df4562ca91f2c37d9766329, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
