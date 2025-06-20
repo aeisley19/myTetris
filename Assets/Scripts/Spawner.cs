@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour
 
     public void Spawn() {
         int rand = Random.Range(0, 6);
-        tetrominoSpawn = Instantiate(tetrominos[1]);
+        tetrominoSpawn = Instantiate(tetrominos[rand]);
         mv = tetrominoSpawn.GetComponent<MoveTetromino>();
         Collider2D col = tetrominoSpawn.GetComponent<Collider2D>();
 

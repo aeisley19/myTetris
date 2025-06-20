@@ -25,7 +25,6 @@ public class MoveTetromino : MonoBehaviour
     private const float RIGHTEDGE = 5f;
     private const float LEFTEDGE = -5f;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created.
     void Start()
     {
@@ -98,7 +97,7 @@ public class MoveTetromino : MonoBehaviour
 
         //print("collided " + collided);
         //tetrimino stops falling once it hits the floor.
-        if (bottom > -10f && collided == false)
+        if (collided == false)
         {
             transform.position = new Vector2(transform.position.x, transform.position.y - 1);
         }
@@ -116,13 +115,17 @@ public class MoveTetromino : MonoBehaviour
         {
             Vector2 below = transform.GetChild(i).gameObject.GetComponent<TetrominoBlock>().GetPos(0, -1);
 
-            if (below.y > 0)
+            if (below.y > -1)
             {
                 if (Game.grid[(int)below.x, (int)below.y] == 1)
                 {
                     collided = true;
                     break;
                 }
+            }
+            else {
+                    collided = true;
+                    break;
             }
         }
 
@@ -155,26 +158,27 @@ public class MoveTetromino : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        
-        isFalling = false;
-
-        setGridPositions();
-
-        print(Game.grid[0, 0]);
+        if(getBottomCollision()) {
+            isFalling = false;
+            setGridPositions();
+        }
     }
 
     private void setGridPositions()
     {
         GameObject block;
         TetrominoBlock tb;
+        int[] allBlocksY = new int[4];
 
         for (int i = 0; i < transform.childCount; i++)
         {
             block = transform.GetChild(i).gameObject;
-            print(block.name);
             tb = transform.GetChild(i).gameObject.GetComponent<TetrominoBlock>();
+            allBlocksY[i] = (int) tb.GetPos(0, 0).x;
             tb.SetGridPoint();
         }
+
+        Game.CheckIfFullRow(allBlocksY);
     }
 
     public bool GetIsFalling()

@@ -32,5 +32,9 @@ public class Game : MonoBehaviour
             grid[x[i], y[i]] = 0;
         }
     }
+
+    public static void CheckIfFullRow(int[] yaxis) {
+        
+    }
 }
 
