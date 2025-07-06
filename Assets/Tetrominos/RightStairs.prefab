@@ -201,9 +201,10 @@ MonoBehaviour:
   col: {fileID: 516525787439059394}
   children:
   - {fileID: 1449094464095910877}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8043512310459386801}
+  - {fileID: 8080777262360062841}
+  - {fileID: 6873367924241385822}
+  gameController: {fileID: 0}
 --- !u!114 &-7511798341966347673
 MonoBehaviour:
   m_ObjectHideFlags: 0

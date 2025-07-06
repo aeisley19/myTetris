@@ -7,12 +7,14 @@ public class Rotation : MonoBehaviour
 {
     private bool isVertical;
     private MoveTetromino mv;
+    private Game game;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         isVertical = false;
         mv = GetComponent<MoveTetromino>();
+        game = GameObject.Find("GameController").GetComponent<Game>();
     }
 
     // Update is called once per frame
@@ -66,19 +68,21 @@ public class Rotation : MonoBehaviour
             Vector3 localPosition = child.localPosition;
             Vector3 predictedLocation = parentQuaternian * localPosition + transform.position;
 
-            //print("old " + child.position);
-            print("new " + predictedLocation);
-
-            if (predictedLocation.x < -5 || predictedLocation.x > 5 ||
-                predictedLocation.y < -10 || predictedLocation.y > 10 ||
-                Game.grid[(int)math.ceil(predictedLocation.x) + 4, (int)math.ceil(predictedLocation.y) + 9] == 1)
+            //Tetromino can rotate outside of bounds above y = 10, but can't for outside 0 < x > 10 or y > 0.
+            if (!(predictedLocation.y > 10))
             {
-                isValid = false;
-                break;
+                if (predictedLocation.x < -5 || predictedLocation.x > 5 ||
+                        predictedLocation.y < -10 ||
+                        game.GetGrid()[(int)math.ceil(predictedLocation.x) + 4, (int)math.ceil(predictedLocation.y) + 9] != null)
+                {
+                    isValid = false;
+                    print(predictedLocation.y);
+                    break;
+                }
             }
         }
 
-        print("out " + isValid);
+       // print("out " + isValid);
         if (isValid)
         {
             transform.eulerAngles = simulatedRotation;

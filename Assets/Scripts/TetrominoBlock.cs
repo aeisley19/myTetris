@@ -6,29 +6,34 @@ public class TetrominoBlock : MonoBehaviour
 
     private int gamePosX;
     private int gamePosY;
+    private Game game;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        game = GameObject.Find("GameController").GetComponent<Game>();
+    }
     void Update()
     {
-        gamePosX = (int) math.ceil(transform.position.x) + 4;
-        gamePosY = (int) math.ceil(transform.position.y) + 9;
+        gamePosX = Mathf.RoundToInt(transform.position.x) + 4;
+        gamePosY = Mathf.RoundToInt(transform.position.y) + 9;
     }
 
     public Vector2 GetPos(int offSetX, int offSetY)
     {
-        Vector2 belowPos = new Vector2(gamePosX + offSetX, gamePosY + offSetY);
+        Vector2 pos = new Vector2(gamePosX + offSetX, gamePosY + offSetY);
 
-        return belowPos;
+        return pos;
     }
 
     public void SetGridPoint()
     {
-        Game.grid[gamePosX, gamePosY] = 1;
+        game.SetGridPoint(gamePosX, gamePosY, transform.gameObject);
     }
 
     public void RemoveGridPoint()
     {
-        Game.grid[gamePosX, gamePosY] = 0;
+        game.SetGridPoint(gamePosX, gamePosY, null);
     }
 
 }

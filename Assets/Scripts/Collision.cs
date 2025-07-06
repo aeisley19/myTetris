@@ -7,23 +7,23 @@ public class Collision : MonoBehaviour
 
     private int gamePosX;
     private int gamePosY;
+    private Game game;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        game = GameObject.Find("GameController").GetComponent<Game>();
     }
 
     // Update is called once per frame
     void Update()
     {
         belowPos = new Vector2(transform.position.x, transform.position.y - 1);
-        print(belowPos);
     }
 
     public bool Collided()
     {
-        return Game.grid[(int)math.ceil(belowPos.x) + 9, (int)math.ceil(belowPos.y + 4)] == 1;
+        return game.PointIsFilled(Mathf.RoundToInt(belowPos.x + 9), Mathf.RoundToInt(belowPos.y + 4));
     }
 
     public Vector2 getGamePos()

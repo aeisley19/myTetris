@@ -10,16 +10,18 @@ public class Spawner : MonoBehaviour
     private Vector2 startPos;
     private GameObject tetrominoSpawn;
     private MoveTetromino mv;
+    private bool init = false;
 
     public void Start()
     {
         Spawn();
     }
 
-    public void Update() {
-        if(!mv.GetIsFalling()) {
+    public void Update()
+    {
+        /*if(!mv.GetIsFalling()) {
             Spawn();
-        }
+        }*/
     }
 
     public void Spawn() {
