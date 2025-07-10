@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveTetromino : MonoBehaviour
@@ -23,9 +25,6 @@ public class MoveTetromino : MonoBehaviour
     private Spawner spawner;
     private bool init = false;
     bool preSpawnDownInput;
-    float movementTimer = 0f;
-    //
-    float movePause = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created.
     void Start()
@@ -80,7 +79,8 @@ public class MoveTetromino : MonoBehaviour
         }
     }
 
-    private void moveSingle(float playerRight, float playerLeft) {
+    private void moveSingle(float playerRight, float playerLeft)
+    {
         if (Input.GetKeyDown(KeyCode.RightArrow) && playerRight < RIGHTEDGE && !GetSideCollision())
         {
             Move(Vector2.right);
@@ -91,25 +91,6 @@ public class MoveTetromino : MonoBehaviour
         }
     }
 
-    //Movement when arrow keys are held down.
-  /*  private void MoveHoldDown(Vector2 direction)
-    {
-        float moveSpd = 0.5f;
-
-        movementTimer += Time.deltaTime;
-
-        if (movementTimer >= moveSpd)
-        {
-            Move(direction);
-            movementTimer = 0f;
-        }
-    }
-
-    private IEnumerator MovePause()
-    {
-        yield return 0.5;
-    }
-*/
     private void Move(Vector2 direction)
     {
         transform.position += (Vector3)direction;
@@ -127,23 +108,13 @@ public class MoveTetromino : MonoBehaviour
         fallTimer += Time.deltaTime;
         float currentSpd = Input.GetKey(KeyCode.DownArrow) && !GetBottomCollision() && !preSpawnDownInput ? fastFallSpd : fallSpd;
 
-        print(fallTimer);
+        //        print(fallTimer);
 
         if (fallTimer >= currentSpd)
         {
             if (!GetBottomCollision())
             {
                 transform.position += Vector3.down;
-            }
-            else
-            {
-                if (lockDelayRoutine == null)
-                {
-                    //lockDelayRoutine = LockDelay(delay);
-                    //StartCoroutine(lockDelayRoutine);
-                    //print("locked");
-                    //LockAndSpawn();
-                }
             }
 
             fallTimer = 0f; // Reset timer after falling
@@ -157,7 +128,7 @@ public class MoveTetromino : MonoBehaviour
             if (Input.GetKey(KeyCode.DownArrow))
             {
                 LockAndSpawn();
-              //  print("print");
+                //  print("print");
                 return;
             }
             else
@@ -170,11 +141,13 @@ public class MoveTetromino : MonoBehaviour
 
     private void LockAndSpawn()
     {
-        if (!isFalling) return; // prevent double calls
+        if (!isFalling) return;
+
         isFalling = false;
 
         setGridPositions();
         gameObject.GetComponent<Rotation>().enabled = false;
+
         spawner.Spawn();
 
         enabled = false;
@@ -192,15 +165,15 @@ public class MoveTetromino : MonoBehaviour
             {
                 if (game.PointIsFilled(Mathf.RoundToInt(below.x), Mathf.RoundToInt(below.y)))
                 {
-                   // print("collided");
+                    // print("collided");
                     collided = true;
                     break;
                 }
             }
             else
             {
-               // print("collided 2");
-              //  print(below);
+                // print("collided 2");
+                //  print(below);
                 collided = true;
                 break;
             }
@@ -211,15 +184,15 @@ public class MoveTetromino : MonoBehaviour
 
     private bool GetSideCollision()
     {
-       // print("here in side");
+        // print("here in side");
         bool col = false;
         for (int i = 0; i < children.Length; i++)
         {
-           // print("aisw");
+            // print("aisw");
             GameObject child = transform.GetChild(i).gameObject;
             Vector2 right = child.GetComponent<TetrominoBlock>().GetPos(1, 0);
             Vector2 left = child.GetComponent<TetrominoBlock>().GetPos(-1, 0);
-            print(game.PointIsFilled(Mathf.RoundToInt(right.x), Mathf.RoundToInt(right.y)));
+            //            print(game.PointIsFilled(Mathf.RoundToInt(right.x), Mathf.RoundToInt(right.y)));
 
             if (left.x > 0 && right.x < 9)
             {
@@ -242,10 +215,7 @@ public class MoveTetromino : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
-        if (GetBottomCollision())
-        {
-            LockAndSpawn();
-        }
+        LockAndSpawn();
 
         lockDelayRoutine = null;
     }
@@ -255,16 +225,31 @@ public class MoveTetromino : MonoBehaviour
         GameObject block;
         TetrominoBlock tb;
         GameObject[] allBlocksY = new GameObject[4];
+        List<int> rowsToCheck = new List<int>();
 
         for (int i = 0; i < transform.childCount; i++)
         {
             block = transform.GetChild(i).gameObject;
             tb = block.GetComponent<TetrominoBlock>();
-            allBlocksY[i] = block;
+            int row = (int)tb.GetPos(0, 0).y;
+            //allBlocksY[i] = block;
             tb.SetGridPoint();
+            if(!rowsToCheck.Contains(row)) rowsToCheck.Add(row);
         }
 
-        game.IsDeletable(allBlocksY);
+        //Sorts rows in descending order to prevent issues with deleting out of order lines.
+        rowsToCheck.Sort();
+        rowsToCheck.Reverse();
+
+        foreach (int y in rowsToCheck)
+        {
+            print(y);
+            if (game.IsDeletable(y))
+            {
+                print(y + " is deleted");
+                game.DeleteRows(y);
+            }
+        }
     }
 
     public bool GetIsFalling()

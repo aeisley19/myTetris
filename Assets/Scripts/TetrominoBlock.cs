@@ -15,8 +15,8 @@ public class TetrominoBlock : MonoBehaviour
     }
     void Update()
     {
-        gamePosX = Mathf.RoundToInt(transform.position.x) + 4;
-        gamePosY = Mathf.RoundToInt(transform.position.y) + 9;
+        gamePosX = (int)math.ceil(transform.position.x) + 4;
+        gamePosY = (int)math.ceil(transform.position.y) + 9;
     }
 
     public Vector2 GetPos(int offSetX, int offSetY)
@@ -36,4 +36,13 @@ public class TetrominoBlock : MonoBehaviour
         game.SetGridPoint(gamePosX, gamePosY, null);
     }
 
+    public GameObject GetBlockFromPos(int x, int y)
+    {
+        return game.GetGrid()[x, y];
+    }
+
+    public void MoveDownOneBlock()
+    {
+        transform.position -= Vector3.down;
+    }
 }
