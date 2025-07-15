@@ -14,6 +14,7 @@ public class MoveTetromino : MonoBehaviour
     //Enumerator that locks tetromino in place after a period of time.
     private IEnumerator lockDelayRoutine;
     //Current position of each block in tetromino.
+    private float delayTimer = 0f;
     public bool isFalling;
     //Right and left edges of the screen.
     private const float RIGHTEDGE = 5f;
@@ -101,6 +102,7 @@ public class MoveTetromino : MonoBehaviour
     {
         if (!isFalling) return;
 
+       // if(!get)
         LandedCheck();
 
         if (preSpawnDownInput) ReleaseDownCheck();
@@ -131,9 +133,15 @@ public class MoveTetromino : MonoBehaviour
             }
             else
             {
-                lockDelayRoutine = LockDelay(delay);
-                StartCoroutine(lockDelayRoutine);
+                //// lockDelayRoutine = LockDelay(delay);
+                //StartCoroutine(lockDelayRoutine);
+                LockDelay(1f);
             }
+        }
+        else
+        {
+            delayTimer = 0f;
+            print("here please");
         }
     }
 
@@ -204,7 +212,7 @@ public class MoveTetromino : MonoBehaviour
     }
 
     //Allows tetromino to move for a number of seconds before locking in place.
-    private IEnumerator LockDelay(float delay)
+    /*private IEnumerator LockDelay(float delay)
     {
         //print("not skipped");
 
@@ -213,12 +221,21 @@ public class MoveTetromino : MonoBehaviour
         LockAndSpawn();
 
         lockDelayRoutine = null;
+    }*/
+
+    private void LockDelay(float delay)
+    {
+        delayTimer += Time.deltaTime;
+        print(delayTimer);
+
+        if (delayTimer >= delay)
+        {
+            LockAndSpawn();
+            delayTimer = 0f;
+        }
+
     }
 
-    /*private void LockDelay(float delay)
-    {
-        
-    }*/
     public bool GetIsFalling()
     {
         return isFalling;
