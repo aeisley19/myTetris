@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 
 public class Game : MonoBehaviour
 {
     private GameObject[,] grid;
-    //Is a tetromino falling.
-    GameObject[] blockRow = new GameObject[10];
+    private int level = 0;
+    private int score = 0;
 
     //time delay before tetrimino locks into place upon landing on floor or another tetromino.
     public void Start()
@@ -28,14 +29,6 @@ public class Game : MonoBehaviour
     {
         return grid;
     }
-
-    /*public void SetGridPoints(int[] x, int[] y)
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            grid[x[i], y[i]] = null;
-        }
-    }*/
 
     public void SetGridPoint(int x, int y, GameObject val)
     {
@@ -67,39 +60,26 @@ public class Game : MonoBehaviour
         return true;
     }
 
-    public void DeleteRows(int yAxisSquare)
+    public void DeleteAnimation()
+    {
+
+    }
+    public void DeleteRows(int yAxisSquare, int numOfDeletedRows)
     {
         for (int i = 0; i < grid.GetLength(0); i++)
         {
-            //            print("destroy");
             Destroy(grid[i, yAxisSquare]);
             grid[i, yAxisSquare].GetComponent<TetrominoBlock>().RemoveGridPoint();
         }
 
+        AddToScore(numOfDeletedRows);
         AdjustRows(yAxisSquare);
     }
 
-    /*public void MoveOneRowDown(int yAxisSquare)
-    {
-        for (int i = 0; i < grid.GetLength(0); i++)
-        {
-            if (yAxisSquare - 1 > 0 && grid[i, yAxisSquare] != null)
-            {
-
-                grid[i, yAxisSquare - 1] = grid[i, yAxisSquare];
-                //grid[i, yAxisSquare].GetComponent<TetrominoBlock>().RemoveGridPoint();
-                // grid[i, yAxisSquare - 1].GetComponent<TetrominoBlock>().SetGridPoint();
-                print(grid[i, yAxisSquare]);
-                grid[i, yAxisSquare].transform.position += new Vector3(0, -1);
-            }
-        }
-    }*/
-
     public void AdjustRows(int clearedRow)
     {
-        for (int y = clearedRow+1; y < grid.GetLength(1); y++)
+        for (int y = clearedRow + 1; y < grid.GetLength(1); y++)
         {
-            //            MoveOneRowDown(i);
             for (int x = 0; x < grid.GetLength(0); x++)
             {
                 if (grid[x, y] != null)
@@ -111,5 +91,56 @@ public class Game : MonoBehaviour
             }
         }
     }
-}
 
+    public void AddToScore(int numOfDeletedRows)
+    {
+        int points = 0;
+
+        switch (numOfDeletedRows)
+        {
+            case 1:
+                points = 40;
+                break;
+            case 2:
+                points = 100;
+                break;
+            case 3:
+                points = 300;
+                break;
+            case 4:
+                points = 1200;
+                break;
+        }
+
+        score += points * (level + 1);
+    }
+    public void SetGridPositions(GameObject tetromino)
+    {
+        GameObject block;
+        TetrominoBlock tb;
+        GameObject[] allBlocksY = new GameObject[4];
+        List<int> rowsToCheck = new List<int>();
+
+        for (int i = 0; i < tetromino.transform.childCount; i++)
+        {
+            block = tetromino.transform.GetChild(i).gameObject;
+            tb = block.GetComponent<TetrominoBlock>();
+            int row = (int)tb.GetPos(0, 0).y;
+            //allBlocksY[i] = block;
+            tb.SetGridPoint();
+            if (!rowsToCheck.Contains(row)) rowsToCheck.Add(row);
+        }
+
+        //Sorts rows in descending order to prevent issues with deleting out of order lines.
+        rowsToCheck.Sort();
+        rowsToCheck.Reverse();
+
+        foreach (int y in rowsToCheck)
+        {
+            if (IsDeletable(y))
+            {
+                DeleteRows(y, rowsToCheck.Count);
+            }
+        }
+    }
+}
