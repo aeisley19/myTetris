@@ -41,6 +41,8 @@ public class MoveTetromino : MonoBehaviour
         //Skips 1 frame so that the tetromino could spawn before taking the prefabs initial position (0, 0).
         if (!init)
         {
+
+            game.OverlappingPieceCheck(transform.gameObject);
             //Is down key pressed at initialization.
             preSpawnDownInput = Input.GetKey(KeyCode.DownArrow);
             init = true;
@@ -141,7 +143,10 @@ public class MoveTetromino : MonoBehaviour
         else
         {
             delayTimer = 0f;
+<<<<<<< HEAD
             print("here please");
+=======
+>>>>>>> 36681b48 (help)
         }
     }
 
@@ -154,7 +159,7 @@ public class MoveTetromino : MonoBehaviour
         game.SetGridPositions(transform.gameObject);
         gameObject.GetComponent<Rotation>().enabled = false;
 
-        spawner.Spawn();
+        if(!game.isGameOver()) spawner.Spawn();
 
         enabled = false;
     }
@@ -226,7 +231,10 @@ public class MoveTetromino : MonoBehaviour
     private void LockDelay(float delay)
     {
         delayTimer += Time.deltaTime;
+<<<<<<< HEAD
         print(delayTimer);
+=======
+>>>>>>> 36681b48 (help)
 
         if (delayTimer >= delay)
         {
@@ -239,5 +247,17 @@ public class MoveTetromino : MonoBehaviour
     public bool GetIsFalling()
     {
         return isFalling;
+    }
+}
+
+
+public static class PixelSnap
+{
+    public static Vector3 SnapToPixelGrid(Vector3 position, float pixelsPerUnit)
+    {
+        float unitSize = 1f / pixelsPerUnit;
+        float x = Mathf.Round(position.x / unitSize) * unitSize;
+        float y = Mathf.Round(position.y / unitSize) * unitSize;
+        return new Vector3(x, y, position.z);
     }
 }

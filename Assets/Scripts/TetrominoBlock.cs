@@ -12,6 +12,8 @@ public class TetrominoBlock : MonoBehaviour
     void Start()
     {
         game = GameObject.Find("GameController").GetComponent<Game>();
+        gamePosX = (int)math.ceil(transform.position.x) + 4;
+        gamePosY = (int)math.ceil(transform.position.y) + 9;
     }
     void Update()
     {
@@ -19,6 +21,10 @@ public class TetrominoBlock : MonoBehaviour
         gamePosY = (int)math.ceil(transform.position.y) + 9;
     }
 
+    void LateUpdate()
+    {
+        transform.position = PixelSnap.SnapToPixelGrid(transform.position, 120f);
+    }
     public Vector2 GetPos(int offSetX, int offSetY)
     {
         Vector2 pos = new Vector2(gamePosX + offSetX, gamePosY + offSetY);

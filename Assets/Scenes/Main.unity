@@ -164,13 +164,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tetrominos:
-  - {fileID: 5804490715210197981, guid: 29fbd233df3bba8e693d4865edf918a2, type: 3}
-  - {fileID: 3634854247670891889, guid: 0ae8feff4e237eda787c376668a98e15, type: 3}
   - {fileID: 7863086945776967895, guid: f8e21b914802f7f3ea94e67db313cb48, type: 3}
-  - {fileID: 1138106932548140804, guid: 736914dcb23dec4a0b9216b8e3cb333b, type: 3}
-  - {fileID: 2440833968579267459, guid: e7543755142e479859e31a61f22d4607, type: 3}
   - {fileID: 699934151448228920, guid: 8c1d507b6f2b2e0aa8afb81c4f421c56, type: 3}
   - {fileID: 306095983928577043, guid: 9dbbb6bef2e1479e589cc43b968858ba, type: 3}
+  - {fileID: 1138106932548140804, guid: 736914dcb23dec4a0b9216b8e3cb333b, type: 3}
+  - {fileID: 5804490715210197981, guid: 29fbd233df3bba8e693d4865edf918a2, type: 3}
+  - {fileID: 3634854247670891889, guid: 0ae8feff4e237eda787c376668a98e15, type: 3}
+  - {fileID: 2440833968579267459, guid: e7543755142e479859e31a61f22d4607, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +251,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -275,19 +275,19 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 34
+  field of view: 60
   orthographic: 1
   orthographic size: 10
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 0
+  m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 0
+  m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 0
@@ -536,6 +536,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2045391080}
   - component: {fileID: 2045391079}
+  - component: {fileID: 2045391081}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -570,6 +571,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2045391081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045391078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c6f3331c6e1922bab2b42889be9abd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

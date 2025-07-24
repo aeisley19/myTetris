@@ -82,7 +82,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.2, y: 1.2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -296,14 +296,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b67b2b51459e364eb7803c9be0f3f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 0, y: 0}
-  coolDown: 0
   col: {fileID: 2804403837413293416}
   children:
   - {fileID: 1251765394435419489}
   - {fileID: 928797762024854333}
   - {fileID: 260412277935698306}
   - {fileID: 7818370167186066226}
+  isFalling: 0
 --- !u!114 &-7516265275414329576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,7 +397,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.2, y: 1.2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -498,7 +497,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.2, y: 1.2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

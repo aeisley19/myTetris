@@ -7,12 +7,19 @@ using UnityEngine.InputSystem.Controls;
 public class Game : MonoBehaviour
 {
     private GameObject[,] grid;
+<<<<<<< HEAD
     private int level = 0;
     private int score = 0;
+=======
+    public static int level = 0;
+    private bool gameOver = false;
+    private ScoreManager scr;
+>>>>>>> 36681b48 (help)
 
     //time delay before tetrimino locks into place upon landing on floor or another tetromino.
     public void Start()
     {
+        scr = GetComponent<ScoreManager>();
         grid = new GameObject[10, 20];
 
         //Build the grid array.
@@ -70,9 +77,16 @@ public class Game : MonoBehaviour
         {
             Destroy(grid[i, yAxisSquare]);
             grid[i, yAxisSquare].GetComponent<TetrominoBlock>().RemoveGridPoint();
+            //if parent is empty, destroy parent. cleans up unused objects.
+            //if (grid[i, yAxisSquare].transform.parent.childCount <= 0) Destroy(grid[i, yAxisSquare].transform.parent.gameObject);
         }
 
+<<<<<<< HEAD
         AddToScore(numOfDeletedRows);
+=======
+        print("here " + numOfDeletedRows);
+        scr.AddToScore(numOfDeletedRows);
+>>>>>>> 36681b48 (help)
         AdjustRows(yAxisSquare);
     }
 
@@ -92,6 +106,7 @@ public class Game : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
     public void AddToScore(int numOfDeletedRows)
     {
         int points = 0;
@@ -114,6 +129,9 @@ public class Game : MonoBehaviour
 
         score += points * (level + 1);
     }
+=======
+
+>>>>>>> 36681b48 (help)
     public void SetGridPositions(GameObject tetromino)
     {
         GameObject block;
@@ -143,4 +161,33 @@ public class Game : MonoBehaviour
             }
         }
     }
+<<<<<<< HEAD
+=======
+
+    public void OverlappingPieceCheck(GameObject spawnedTetromino)
+    {
+        GameObject block;
+
+        for (int i = 0; i < spawnedTetromino.transform.childCount; i++)
+        {
+            print("i " + i);
+            block = spawnedTetromino.transform.GetChild(i).gameObject;
+            TetrominoBlock tb = block.GetComponent<TetrominoBlock>();
+            Vector2 blockPos = tb.GetPos(0, 0);
+
+            print(block + "pos " + blockPos);
+            print("here " + grid[(int)blockPos.x, (int)blockPos.y]);
+
+            if (grid[(int)blockPos.x, (int)blockPos.y] != null)
+            {
+                gameOver = true;
+            }
+        }
+    }
+
+    public bool isGameOver()
+    {
+        return gameOver;
+    }
+>>>>>>> 36681b48 (help)
 }

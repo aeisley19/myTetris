@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
     public void Spawn()
     {
         int rand = Random.Range(0, 6);
-        tetrominoSpawn = Instantiate(tetrominos[rand]);
+        tetrominoSpawn = Instantiate(tetrominos[6]);
         mv = tetrominoSpawn.GetComponent<MoveTetromino>();
         Collider2D col = tetrominoSpawn.GetComponent<Collider2D>();
 
@@ -34,16 +34,31 @@ public class Spawner : MonoBehaviour
         {
             tetrominoSpawn.transform.position = new Vector2(0.5f, transform.position.y - col.bounds.size.y + 1.5f);
         }
+<<<<<<< HEAD
+=======
+
+        //print(tetrominoSpawn.transform.position);
+        //game.OverlappingPieceCheck(tetrominoSpawn);
+>>>>>>> 36681b48 (help)
     }
 
     /*private void OverlappingPieceCheck()
     {
+<<<<<<< HEAD
         for (int i = 0; i < tetrominoSpawn.transform.childCount; i++)
         {
+=======
+        print(tetrominoSpawn.transform.childCount);
+
+        for (int i = 0; i < tetrominoSpawn.transform.childCount; i++)
+        {
+            print("i " + i);
+>>>>>>> 36681b48 (help)
             GameObject block = tetrominoSpawn.transform.GetChild(i).gameObject;
             TetrominoBlock tb = block.GetComponent<TetrominoBlock>();
             Vector2 blockPos = tb.GetPos(0, 0);
 
+<<<<<<< HEAD
             if (game.GetGrid()[(int)blockPos.x, (int)blockPos.y] != null)
             {
                 print("game over");
@@ -51,4 +66,18 @@ public class Spawner : MonoBehaviour
             }
         }
     }*/
+=======
+            print(block);
+//            print(game.GetGrid()[(int)blockPos.x, (int)blockPos.y]);
+            if (game.GetGrid()[(int)blockPos.x, (int)blockPos.y] != null)
+            {
+                //print(game.GetGrid()[(int)blockPos.x, (int)blockPos.y]);
+                // print(blockPos.x);
+                //print(blockPos.y);
+                print("game over");
+                //return;
+            }
+        }*/
+    //}
+>>>>>>> 36681b48 (help)
 }
