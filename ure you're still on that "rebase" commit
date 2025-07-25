@@ -1,0 +1,65 @@
+[33mcommit 523061078b5e3d27d1d8546971c5a83e3ffee126[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: Alex Eisley <eisleyalex@gmail.com>
+Date:   Thu Jul 24 16:00:40 2025 -0400
+
+    rebase
+
+[33mcommit 0dddd46874ec58999f9dbd669146480a9eaaf85c[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Alex Eisley <eisleyalex@gmail.com>
+Date:   Tue Jul 15 16:52:53 2025 -0400
+
+    Fixed lockDelay. Now it resets upon being moved off the ground.
+
+[33mcommit d1d6b7d45008530888300ed5d9eb5b5828fc7385[m
+Author: Alex Eisley <eisleyalex@gmail.com>
+Date:   Tue Jul 15 15:05:04 2025 -0400
+
+    Side collision stopped working, not sure why. Fixed now
+
+[33mcommit 88981aef92a8b20021934618dd8cf36dcf959a76[m
+Author: Alex Eisley <eisleyalex@gmail.com>
+Date:   Thu Jul 10 16:19:48 2025 -0400
+
+    deleting rows and bug fixes
+
+[33mcommit 964fe80b23b5a4aa00283c1db17a4a99b2a7b741[m
+Author: Alex Eisley <eisleyalex@gmail.com>
+Date:   Sat Jul 5 20:23:17 2025 -0400
+
+    bug fix collision
+
+[33mcommit cb056eb7f34289285919da00ed25e36791d87c99[m
+Author: Alex Eisley <eisleyalex@gmail.com>
+Date:   Fri Jun 20 11:19:28 2025 -0400
+
+    internal screaming
+
+[33mcommit 37a7bd70a91700598fee8e168e118ffc96397e0d[m
+Author: Alex Eisley <eisleyalex@gmail.com>
+Date:   Fri Jun 20 11:11:51 2025 -0400
+
+    removed cache stuff
+
+[33mcommit 80662304404b0f9497ff092a5e015d72fbaa9258[m
+Author: Alex Eisley <eisleyalex@gmail.com>
+Date:   Fri Jun 20 10:57:03 2025 -0400
+
+    added a git ignore file.
+
+[33mcommit 27b647704b8fea4a39455aa874544c8690c38910[m
+Author: Alex Eisley <eisleyalex@gmail.com>
+Date:   Mon Jun 16 22:18:18 2025 -0400
+
+    added rotation and collision
+
+[33mcommit b489fce0f9a20ef41af919d83077510e853d9b1b[m
+Author: Alex Eisley <eisleyalex@gmail.com>
+Date:   Mon Jun 2 15:18:14 2025 -0400
+
+    Added things
+
+[33mcommit b406b35cdc45ea94167e1ce4f7bcea9d3b227197[m
+Author: Alex Eisley <eisleyalex@gmail.com>
+Date:   Fri May 9 13:06:53 2025 -0400
+
+    init

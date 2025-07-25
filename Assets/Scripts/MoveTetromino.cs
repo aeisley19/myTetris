@@ -10,7 +10,6 @@ public class MoveTetromino : MonoBehaviour
     //An array of squares;
     public GameObject[] children;
     //Center of the sprite on the x and y axis.
-    private float delay = 1f;
     //Enumerator that locks tetromino in place after a period of time.
     private IEnumerator lockDelayRoutine;
     //Current position of each block in tetromino.
@@ -143,10 +142,6 @@ public class MoveTetromino : MonoBehaviour
         else
         {
             delayTimer = 0f;
-<<<<<<< HEAD
-            print("here please");
-=======
->>>>>>> 36681b48 (help)
         }
     }
 
@@ -231,10 +226,6 @@ public class MoveTetromino : MonoBehaviour
     private void LockDelay(float delay)
     {
         delayTimer += Time.deltaTime;
-<<<<<<< HEAD
-        print(delayTimer);
-=======
->>>>>>> 36681b48 (help)
 
         if (delayTimer >= delay)
         {
