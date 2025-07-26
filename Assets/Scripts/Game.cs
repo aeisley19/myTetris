@@ -66,7 +66,7 @@ public class Game : MonoBehaviour
     {
 
     }
-    public void DeleteRows(int yAxisSquare, int numOfDeletedRows)
+    public void DeleteRows(int yAxisSquare)
     {
         for (int i = 0; i < grid.GetLength(0); i++)
         {
@@ -75,8 +75,6 @@ public class Game : MonoBehaviour
             //if parent is empty, destroy parent. cleans up unused objects.
             //if (grid[i, yAxisSquare].transform.parent.childCount <= 0) Destroy(grid[i, yAxisSquare].transform.parent.gameObject);
         }
-
-        scr.AddToScore(numOfDeletedRows);
         AdjustRows(yAxisSquare);
     }
 
@@ -100,7 +98,6 @@ public class Game : MonoBehaviour
     {
         GameObject block;
         TetrominoBlock tb;
-        GameObject[] allBlocksY = new GameObject[4];
         List<int> rowsToCheck = new List<int>();
 
         for (int i = 0; i < tetromino.transform.childCount; i++)
@@ -108,7 +105,6 @@ public class Game : MonoBehaviour
             block = tetromino.transform.GetChild(i).gameObject;
             tb = block.GetComponent<TetrominoBlock>();
             int row = (int)tb.GetPos(0, 0).y;
-            //allBlocksY[i] = block;
             tb.SetGridPoint();
             if (!rowsToCheck.Contains(row)) rowsToCheck.Add(row);
         }
@@ -116,14 +112,18 @@ public class Game : MonoBehaviour
         //Sorts rows in descending order to prevent issues with deleting out of order lines.
         rowsToCheck.Sort();
         rowsToCheck.Reverse();
+        int deletableRowsCount = 0;
 
         foreach (int y in rowsToCheck)
         {
             if (IsDeletable(y))
             {
-                DeleteRows(y, rowsToCheck.Count);
+                deletableRowsCount++;
+                DeleteRows(y);
             }
         }
+        
+        scr.AddToScore(deletableRowsCount);
     }
     
     public void OverlappingPieceCheck(GameObject spawnedTetromino)

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ public class ScoreManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        scoreText = GetComponent<TextMeshProUGUI>();
+        //scoreText = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -38,6 +39,6 @@ public class ScoreManager : MonoBehaviour
 
         score += points * (Game.level + 1);
         print("score " + score);
-        //scoreText.text = score.ToString();
+        scoreText.text = String.Format("{0:000000}", score);
     }
 }
