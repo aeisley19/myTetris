@@ -7,7 +7,11 @@ public class ScoreManager : MonoBehaviour
 {
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI levelText;
     public static int score = 0;
+    public static int Level = 0;
+    private int linesToLevel = 10;
+    private int totalLinesDeleted = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,7 +42,21 @@ public class ScoreManager : MonoBehaviour
         }
 
         score += points * (Game.level + 1);
+        totalLinesDeleted += numOfDeletedRows;
         print("score " + score);
         scoreText.text = String.Format("{0:000000}", score);
+        LevelUp();
+    }
+
+    public void LevelUp()
+    {
+        if (totalLinesDeleted >= linesToLevel)
+        {
+            Level++;
+            totalLinesDeleted = 0;
+            linesToLevel += 10;
+
+            levelText.text = String.Format("{0:00}", Level);
+        }
     }
 }
