@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class NewTetromino : MonoBehaviour
 {
-    public SpriteRenderer renderer;
+    public new SpriteRenderer renderer;
     private Sprite nextTetromino;
     public Sprite[] tetrominos;
 

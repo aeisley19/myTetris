@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour
     {
         nt = nextTetrominoDisplay.GetComponent<NewTetromino>();
         //nextTetrominoSpawn = tetrominos[Random.Range(0, 6)];
-        ChooseNext();
+        ChooseNext(tetrominos[Random.Range(0, 6)]);
         Spawn();
     }
 
@@ -40,14 +40,20 @@ public class Spawner : MonoBehaviour
 
         //print(tetrominoSpawn.transform.position);
         //game.OverlappingPieceCheck(tetrominoSpawn);
-        ChooseNext();
+        ChooseNext(tetrominoSpawn);
     }
 
-    public void ChooseNext()
+    public void ChooseNext(GameObject lastSpawn)
     {
-        int rand = Random.Range(0, 6);
-        nextTetrominoSpawn = tetrominos[rand];
-        nt.DisplayNextTetromino(rand);
+
+        do
+        {
+            int rand = Random.Range(0, 6);
+            nextTetrominoSpawn = tetrominos[rand];
+            nt.DisplayNextTetromino(rand);
+            //print(lastSpawn == null || nextTetrominoSpawn.CompareTag(lastSpawn.tag));
+        } while (nextTetrominoSpawn.CompareTag(lastSpawn.tag));
+
     }
 
     /*private void OverlappingPieceCheck()

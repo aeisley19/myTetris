@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MoveTetromino : MonoBehaviour
@@ -9,19 +10,13 @@ public class MoveTetromino : MonoBehaviour
     public Collider2D col;
     //An array of squares;
     public GameObject[] children;
-    //Center of the sprite on the x and y axis.
-    //Enumerator that locks tetromino in place after a period of time.
-    private IEnumerator lockDelayRoutine;
-    //Current position of each block in tetromino.
     private float delayTimer = 0f;
     public bool isFalling;
     //Right and left edges of the screen.
     private const float RIGHTEDGE = 5f;
     private const float LEFTEDGE = -5f;
     private Game game;
-    private float fallTimer = 0f;
-    private float fallSpd = 1f;
-    private float fastFallSpd = 0.05f;
+    private float framesSinceLastFall;
     private Spawner spawner;
     private bool init = false;
     bool preSpawnDownInput;
@@ -34,13 +29,12 @@ public class MoveTetromino : MonoBehaviour
         isFalling = true;
         spawner = GameObject.Find("TetrominoSpawner").GetComponent<Spawner>();
     }
- 
+
     void Update()
     {
         //Skips 1 frame so that the tetromino could spawn before taking the prefabs initial position (0, 0).
         if (!init)
         {
-
             game.OverlappingPieceCheck(transform.gameObject);
             //Is down key pressed at initialization.
             preSpawnDownInput = Input.GetKey(KeyCode.DownArrow);
@@ -103,23 +97,67 @@ public class MoveTetromino : MonoBehaviour
     {
         if (!isFalling) return;
 
-       // if(!get)
+        // if(!get)
         LandedCheck();
 
         if (preSpawnDownInput) ReleaseDownCheck();
 
-        fallTimer += Time.deltaTime;
-        float currentSpd = Input.GetKey(KeyCode.DownArrow) && !GetBottomCollision() && !preSpawnDownInput ? fastFallSpd : fallSpd;
+        framesSinceLastFall ++;
+        float framesTillFall = Input.GetKey(KeyCode.DownArrow) && !preSpawnDownInput ? 2 : SetFallSpd();
 
-        if (fallTimer >= currentSpd)
+        if (framesSinceLastFall >= framesTillFall)
         {
             if (!GetBottomCollision())
             {
                 transform.position += Vector3.down;
             }
 
-            fallTimer = 0f; // Reset timer after falling
+            framesSinceLastFall = 0f; // Reset timer after falling
         }
+    }
+
+    private int SetFallSpd()
+    {
+        switch (ScoreManager.Level)
+        {
+            case 0: return 48;
+            case 1: return 43;
+            case 2: return 38;
+            case 3: return 33;
+            case 4: return 28;
+            case 5: return 23;
+            case 6: return 18;
+            case 7: return 13;
+            case 8: return 8;
+            case 9: return 6;
+            case 10:
+            case 11:
+            case 12:
+                return 5;
+            case 13:
+            case 14:
+            case 15:
+                return 4;
+            case 16:
+            case 17:
+            case 18:
+                return 3;
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 26:
+            case 27:
+            case 28:
+                return 2;
+            case 29:
+                return 1;
+        }
+
+        return 0;
     }
 
     private void LandedCheck()
@@ -154,8 +192,9 @@ public class MoveTetromino : MonoBehaviour
         game.SetGridPositions(transform.gameObject);
         gameObject.GetComponent<Rotation>().enabled = false;
 
-        if(!game.isGameOver()) spawner.Spawn();
+        if (!game.isGameOver()) spawner.Spawn();
 
+        RemoveParent();
         enabled = false;
     }
 
@@ -211,18 +250,6 @@ public class MoveTetromino : MonoBehaviour
         return col;
     }
 
-    //Allows tetromino to move for a number of seconds before locking in place.
-    /*private IEnumerator LockDelay(float delay)
-    {
-        //print("not skipped");
-
-        yield return new WaitForSeconds(delay);
-
-        LockAndSpawn();
-
-        lockDelayRoutine = null;
-    }*/
-
     private void LockDelay(float delay)
     {
         delayTimer += Time.deltaTime;
@@ -239,16 +266,17 @@ public class MoveTetromino : MonoBehaviour
     {
         return isFalling;
     }
-}
+    
+    public void RemoveParent () {
+        print("here " + gameObject.transform.childCount);
+        /* for (int i = 0; i < gameObject.transform.childCount; i++)
+         {
+             gameObject.transform.GetChild(i).transform.parent = null;
+             print(i);
+             print(gameObject.transform.GetChild(i));
+         }*/
 
-
-public static class PixelSnap
-{
-    public static Vector3 SnapToPixelGrid(Vector3 position, float pixelsPerUnit)
-    {
-        float unitSize = 1f / pixelsPerUnit;
-        float x = Mathf.Round(position.x / unitSize) * unitSize;
-        float y = Mathf.Round(position.y / unitSize) * unitSize;
-        return new Vector3(x, y, position.z);
+        gameObject.transform.DetachChildren();
+        Destroy(gameObject);
     }
 }

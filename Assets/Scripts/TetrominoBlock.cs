@@ -21,10 +21,6 @@ public class TetrominoBlock : MonoBehaviour
         gamePosY = (int)math.ceil(transform.position.y) + 9;
     }
 
-    void LateUpdate()
-    {
-        transform.position = PixelSnap.SnapToPixelGrid(transform.position, 120f);
-    }
     public Vector2 GetPos(int offSetX, int offSetY)
     {
         Vector2 pos = new Vector2(gamePosX + offSetX, gamePosY + offSetY);

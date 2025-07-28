@@ -8,14 +8,17 @@ public class Game : MonoBehaviour
 {
     private GameObject[,] grid;
     public static int level = 0;
-    private bool gameOver = false;
+    //private bool gameOver = false;
     private ScoreManager scr;
+    public bool gameOver;
+    public GameObject canvas;
 
     //time delay before tetrimino locks into place upon landing on floor or another tetromino.
     public void Start()
     {
         scr = GetComponent<ScoreManager>();
         grid = new GameObject[10, 20];
+        //gameOver = GetComponent<GameOverManager>();
 
         //Build the grid array.
         for (int i = 0; i < grid.GetLength(0); i++)
@@ -138,9 +141,16 @@ public class Game : MonoBehaviour
 
             if (grid[(int)blockPos.x, (int)blockPos.y] != null)
             {
-                gameOver = true;
+                print("here");
+                GameOver();
             }
         }
+    }
+
+    public void GameOver()
+    {
+        gameOver = true;
+        canvas.SetActive(true);
     }
 
     public bool isGameOver()
